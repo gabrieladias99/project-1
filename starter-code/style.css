@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+
+}
+
+nav{
+  text-align: center;
+  border-bottom: 1px solid black;
+  padding: 20px 0;
+}
+
+nav h1{
+  font-size: 2em;
+}
+
+#playable{
+  margin: 0 25px;
+
+}
+
+
+#question{
+  text-align: center;
+  border: 1px solid rgb(122,118,117);
+  border-radius: 10px;
+  padding: 40px 0;
+  margin: 20px 0;
+  background-color: #024FD8;
+  color:white;
+}
+
+#question p{
+  font-size: 1.5em;
+}
+
+#sinals{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px; 
+  border-bottom: 1px solid black;
+}
+
+.btn-answer{
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px 0;
+  margin: 5px 0;
+  width: 100%;
+  background-color:#97B3E5;
+  border: none;
+  box-shadow: 0 4px rgba(232,226,225);
+}
+
+.btn-answer:hover{
+  color: #fff;
+  background-color: #175DD9;
+  transition: 0.8s;
+}
+
+
+.btn-answer.rigth:hover{
+  background-color: green;
+  color:white;
+  transition: 0.8s;
+}
+
+.btn-answer.wrong:hover{
+  background-color:red;
+  color:white;
+  transition: 0.8s;
+}
+
+.btn-answer:focus{
+ outline: none;
+}
+.rigth{
+  background-color: green;
+  box-shadow: none;
+  transform: translateY(3px);
+  color:white;
+}
+
+.wrong{
+  background-color:red;
+  box-shadow: none;
+  transform: translateY(3px);
+  color:white;
+}
+
+#pig{
+  height: 50px ;
+}

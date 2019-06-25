@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Teste</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id='game-interface'>
+    <nav>
+      <h1>Jogo do Milhão</h1>
+    </nav>
+
+    <section id='sinals'>
+      <picture>
+        <img id='pig' src="../img/piggybank.svg">
+        <p id='dinheiro'>Dinheiro:</p>
+      </picture>
+      <p>Questões:</p>
+    </section>
+
+    <canvas id="time" height="40" style="background-color: green" width="900"></canvas>
+
+    <section id='playable'>
+      <div id='question'>
+        <p id='question-text'>Question?</p>
+      </div>
+      <div id='answers'>
+        <button class="btn-answer">Answer 1</button>
+        <button class="btn-answer">Answer 2 </button>
+        <button class="btn-answer">Answer 3</button>
+        <button class="btn-answer">Answer 4</button>
+      </div>
+    </section>
+  </div>
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
