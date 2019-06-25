@@ -10,36 +10,46 @@
 </head>
 
 <body>
-  <div id='game-interface'>
-    <nav>
-      <h1>Jogo do Milhão</h1>
-    </nav>
+  <div class='flip-card'>
+    <div class='flip-card-inner'>
+      <div id='game-interface'>
+        <nav>
+          <canvas id="logo"></canvas>
+        </nav>
 
-    <section id='sinals'>
-      <div class='inline'>
-        <img id='pig' src="../img/piggybank.svg">
-        <p id='dinheiro'>0</p>
-      </div>
-    </section>
+        <section id='sinals'>
+          <div class='inline'>
+            <img id='pig' src="../img/piggybank.svg">
+            <p id='dinheiro'>0</p>
+          </div>
+        </section>
+        <div id='timecanvasdiv'>
+          <canvas id="time"></canvas>
+        </div>
 
-    <canvas id="time" height="40" width="900"></canvas>
 
-    <section id='playable'>
-      <div id='question'>
-        <p id='question-text'>Question?</p>
+        <section id='playable'>
+          <div class='question'>
+            <p id='question-text'>Question?</p>
+          </div>
+          <div id='answers'>
+            <button class="btn-answer">Answer 1</button>
+            <button class="btn-answer">Answer 2 </button>
+            <button class="btn-answer">Answer 3</button>
+            <button class="btn-answer">Answer 4</button>
+          </div>
+        </section>
       </div>
-      <div id='answers'>
-        <button class="btn-answer">Answer 1</button>
-        <button class="btn-answer">Answer 2 </button>
-        <button class="btn-answer">Answer 3</button>
-        <button class="btn-answer">Answer 4</button>
+      <div id='back'>
+        <h1>OLÁ EU SOU A PARTE DE TRÁS</h1>
       </div>
-    </section>
+    </div>
   </div>
 
 
-
   <script src="script.js"></script>
+  <script src="canvas.js"></script>
+  <script src="questions.js"></script>
 </body>
 
 </html>
