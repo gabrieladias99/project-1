@@ -81,6 +81,10 @@ function writeQuestions() {
   }
 }
 
+function lost(){
+
+}
+
 function elementsNormal() {
   for (let i = 0; i < 4; i += 1) {
     buttonElement[i].setAttribute('class', 'btn-answer');
@@ -113,14 +117,15 @@ let money = 0;
 for (let i = 0; i < 4; i += 1) {
   buttonElement[i].onclick = function () {
     if (chooseRight(i) === true) {
-      document.getElementById('dinheiro').innerHTML = `${money += 1000}`;
+      document.getElementsByClassName('dinheiro').innerHTML = `${money += 1000}`;
       buttonElement[i].setAttribute('class', 'btn-answer rigth');
-      document.querySelector('.flip-card').setAttribute('class', 'flip-card active');
+      setTimeout(function(){document.querySelector('.flip-card').setAttribute('class', 'flip-card active')},1000);
       clearInterval(canvasSizing);
-      setTimeout(loadElements, 1000);
+      setTimeout(loadElements, 1800);
     } else {
       buttonElement[i].setAttribute('class', 'btn-answer wrong');
       buttonElement[chooseRight(i)].setAttribute('class', 'btn-answer rigth');
+      setTimeout(function(){document.getElementById('lost').removeAttribute('class')},2000);
       clearInterval(canvasSizing);
     }
   };

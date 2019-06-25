@@ -13,7 +13,7 @@ body{
   background-color: navy;
   display:flex;
   justify-content: center;
-
+  overflow:hidden;
 }
 
 .flip-card {
@@ -33,15 +33,21 @@ body{
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-#game-interface, #back{
+#game-interface, #back, #lost{
   position: absolute;
   backface-visibility: hidden;
   width: 100%;
   height: 100%;
   background-color: white;
   border-radius: 30px;
-  padding: 70px 0;
+  padding: 70px 30px;
 }
+
+.visibility{
+  visibility: hidden;
+}
+
+
 
 #back{
   transform: rotateY(180deg);
@@ -49,10 +55,6 @@ body{
 
 .flip-card.active .flip-card-inner {
   transform: rotateY(180deg);
-}
-
-#playable{
-  margin: 0 25px;
 }
 
 nav{
@@ -69,7 +71,7 @@ nav h1{
   align-items: center;
 }
 
-#dinheiro{
+.dinheiro{
   font-family: 'Rubik Mono One', sans-serif;
   font-size: 1.7em;
 }
@@ -98,7 +100,7 @@ nav h1{
   padding: 10px 20px; 
 }
 
-.btn-answer{
+.btn-answer, .btn-start{
   text-align: center;
   border-radius: 10px;
   padding: 20px 0;
@@ -109,7 +111,7 @@ nav h1{
   box-shadow: 0 4px rgba(232,226,225);
 }
 
-.btn-answer:hover{
+.btn-answer:hover, .btn-start:hover{
   color: #fff;
   background-color: #175DD9;
   transition: 0.8s;
@@ -128,7 +130,7 @@ nav h1{
   transition: 0.8s;
 }
 
-.btn-answer:focus{
+.btn-answer:focus, .btn-start:focus{
  outline: none;
 }
 
@@ -174,6 +176,7 @@ nav h1{
 
 #time{
   background-color: green;
+  height: 40px;
 }
 
 #timecanvasdiv{
@@ -183,4 +186,8 @@ nav h1{
 #logo{
   width:30px;
   height: 30px;
+}
+
+#coin-image{
+  width: 100%;
 }
