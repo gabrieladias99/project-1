@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable func-names */
 /* eslint-disable prefer-destructuring */
 const questions = [
@@ -48,61 +49,53 @@ const questions = [
 let chosenQuestion;
 let questionStatement;
 let answers;
-const alreadyChoseen = [];
+const questionElement = document.getElementById('question-text');
+const buttonElement = document.getElementsByTagName('button');
+const mutableArrayOfQuestions = questions;
 
+/* It chooses the question from the array given and pushs the selected one to an array of alreadyChoseen */
 function getQuestion(arrayOfQuestions) {
-  chosenQuestion = arrayOfQuestions[Math.floor(Math.random() * arrayOfQuestions.length)];
-  alreadyChoseen.push(chosenQuestion);
+  const index = Math.floor(Math.random() * arrayOfQuestions.length);
+  chosenQuestion = arrayOfQuestions[index];
   questionStatement = chosenQuestion.question;
   answers = chosenQuestion.answers;
 }
 
+/* It writes the questions in the HTML elements */
+function writeQuestions() {
+  questionElement.innerHTML = questionStatement;
+  for (let i = 0; i < 4; i += 1) {
+    buttonElement[i].innerHTML = answers[i];
+  }
+}
+
+function loadElements() {
+  getQuestion(questions);
+  writeQuestions();
+}
+
+/* It calls the two functions that put the elements on screen when it is onload */
+window.onload = function () {
+  loadElements();
+};
+
+/* It sees if we have chosen the right answer */
 function chooseRight(choosenAnswer) {
   if (answers[choosenAnswer] === answers[chosenQuestion.correct]) {
     getQuestion(questions);
     return true;
   }
-  return false;
-}
-
-function writeQuestions() {
-  document.getElementById('question-text').innerHTML = questionStatement;
-  for (let i = 0; i < 4; i += 1) {
-    document.getElementsByTagName('button')[i].innerHTML = answers[i];
-    // document.getElementsByTagName('button')[i].removeAttribute('class')
-  }
-}
-
-
-window.onload = function () {
-  getQuestion(questions);
-  writeQuestions();
-};
-
-function start() {
-  getQuestion(questions);
-  writeQuestions();
+  return answers[chosenQuestion.correct];
 }
 
 for (let i = 0; i < 4; i += 1) {
   let money = 0;
-  document.getElementsByTagName('button')[i].onclick = function () {
+  buttonElement[i].onclick = function () {
     if (chooseRight(i)) {
       document.getElementById('dinheiro').innerHTML = `${money += 1000}`;
-      document.getElementsByTagName('button')[i].setAttribute('class', 'btn-answer rigth');
-
-    } else{
-      document.getElementsByTagName('button')[i].setAttribute('class', 'btn-answer wrong');
+      buttonElement[i].setAttribute('class', 'btn-answer rigth');
+    } else {
+      buttonElement[i].setAttribute('class', 'btn-answer wrong');
     }
   };
 }
-
-let size = 900;
-
-setInterval(() => {
-  document.getElementById('time').width = `${size}`;
-  console.log(document.getElementById('time'));
-  if (size > 99) {
-    size -= 1;
-  } else size = 0;
-}, 10);
