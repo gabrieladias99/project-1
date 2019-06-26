@@ -6,16 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Teste</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="appearance.css">
+  <link rel="stylesheet" href="flip-style.css">
+
 </head>
 
 <body>
   <div class='flip-card'>
+    <div id='initial-screen'>
+      <button class='btn-begin'>1 Player</button>
+      <button class='btn-begin'>2 Players</button>
+    </div>
     <div class='flip-card-inner'>
       <div id='game-interface'>
-        <nav>
-          <canvas id="logo"></canvas>
-        </nav>
+        <p id='name'></p>
+        <div id="demo">
+          <p id="image">
+          </p>
+        </div>
 
         <section id='sinals'>
           <div class='inline'>
@@ -46,16 +54,15 @@
       </div>
       <div id='lost' class="visibility">
         <h1> You Lost </h1>
-        <p class='dinheiro'>10</p>
+        <p id='dinheiro-ganho' class='dinheiro'>$ 0</p>
         <button class="btn-start"> Let's Play Again!!</button>
       </div>
     </div>
   </div>
 
-
-  <script src="script.js"></script>
-  <script src="canvas.js"></script>
   <script src="questions.js"></script>
+  <script src="coin-movement.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

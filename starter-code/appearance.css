@@ -1,0 +1,27 @@
+/* General apperance style for hole document */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+
+}
+
+body{
+  background-color: navy;
+  display:flex;
+  justify-content: center;
+  overflow:hidden; /*Scrollbar is not showed and you can not scroll the screen*/
+}
+
+/* The same design for all our 'screens' */
+#initial-screen, #game-interface, #back, #lost{
+  position: absolute;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 30px;
+  padding: 70px 30px;
+}

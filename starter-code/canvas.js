@@ -1,2 +1,0 @@
-
-time.height = 40;

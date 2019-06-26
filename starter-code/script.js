@@ -3,6 +3,16 @@
 /* eslint-disable func-names */
 /* eslint-disable prefer-destructuring */
 let canvasSizing;
+let endGame
+let chosenQuestion;
+let questionStatement;
+let answers;
+const questionElement = document.getElementById('question-text');
+const buttonAnswer = document.getElementsByClassName('btn-answer');
+const mutableArrayOfQuestions = [];
+const buttonBegin = document.getElementsByClassName('btn-begin');
+time.height = 40;
+
 
 function interval() {
   time.width = `${size}`;
@@ -11,97 +21,70 @@ function interval() {
   } else size = 0;
 }
 
-const questions = [
-  {
-    level: 'easy',
-    question: 'Em que estado brasileiro nasceu a apresentadora Xuxa?',
-    answers: ['Rio de Janeiro', 'Rio Grande do Sul', 'Santa Catarina', 'Goiás'],
-    correct: 1,
-  },
-  {
-    level: 'easy',
-    question: 'Qual o nome dado ao estado da água em forma de gelo?',
-    answers: ['Liquido', 'Sólido', 'Gasoso', 'Vaporoso'],
-    correct: 1,
-  },
-  {
-    level: 'easy',
-    question: 'Quem é a namorada do Mickey?',
-    answers: ['Margarida', 'Minnie', 'A Pequena Sereia', 'Olivia Palito'],
-    correct: 1,
-  },
-  {
-    level: 'easy',
-    question: 'Fidel Castro nasceu em que país?',
-    answers: ['Jamaica', 'Cuba', 'El Salvador', 'México'],
-    correct: 1,
-  },
-  {
-    level: 'easy',
-    question: 'Qual é o signo do zodíaco de quem nasce no dia do ano-novo?',
-    answers: ['Virgem', 'Aquario', 'Capricornio', 'Áries'],
-    correct: 2,
-  },
-  {
-    level: 'easy',
-    question: 'Qual é o nome da embarcação típica do litoral nordestino brasileiro?',
-    answers: ['Submarino', 'Jet Ski', 'Jangada', 'Lancha'],
-    correct: 2,
-  },
-];
 
-let chosenQuestion;
-let questionStatement;
-let answers;
-const questionElement = document.getElementById('question-text');
-const buttonElement = document.getElementsByTagName('button');
-const mutableArrayOfQuestions = [];
 
 /* It chooses the question from the array given and pushs the selected one to an array of alreadyChoseen */
 function getQuestion(arrayOfQuestions) {
   let firstIndex = Math.floor(Math.random() * arrayOfQuestions.length);
   chosenQuestion = arrayOfQuestions[firstIndex];
+
   if (mutableArrayOfQuestions.length < arrayOfQuestions.length) {
     while (mutableArrayOfQuestions.includes(chosenQuestion)) {
-      console.log('banana')
       let index = Math.floor(Math.random() * arrayOfQuestions.length);
       chosenQuestion = arrayOfQuestions[index];
     }
+    mutableArrayOfQuestions.push(chosenQuestion);
+    questionStatement = chosenQuestion.question;
+    answers = chosenQuestion.answers;
+  } else {
+    document.getElementById('lost').removeAttribute('class')
   }
-  mutableArrayOfQuestions.push(chosenQuestion);
-  questionStatement = chosenQuestion.question;
-  answers = chosenQuestion.answers;
 }
+
+
 
 /* It writes the questions in the HTML elements */
 function writeQuestions() {
   questionElement.innerHTML = questionStatement;
   for (let i = 0; i < 4; i += 1) {
-    buttonElement[i].innerHTML = answers[i];
+    buttonAnswer[i].innerHTML = answers[i];
   }
-}
-
-function lost(){
-
 }
 
 function elementsNormal() {
   for (let i = 0; i < 4; i += 1) {
-    buttonElement[i].setAttribute('class', 'btn-answer');
+    buttonAnswer[i].setAttribute('class', 'btn-answer');
+    buttonAnswer[i].disabled = false;
   }
   document.querySelector('.flip-card').setAttribute('class', 'flip-card');
 }
 
 function loadElements() {
+  endGame = setTimeout(function () { document.getElementById('lost').removeAttribute('class') }, 10000);
   getQuestion(questions);
   writeQuestions();
   elementsNormal();
+  stopAnimate()
+  animateScript();
   size = 400;
   canvasSizing = setInterval(interval, 10);
 }
 
-/* It calls the two functions that put the elements on screen when it is onload */
-window.onload = function () {
+let name1
+buttonBegin[0].onclick = function () {
+  name1 = prompt('Single Player, please enter your name', 'Player 1');
+  document.getElementById('name').innerHTML= `${name1}`;
+  document.getElementById('initial-screen').style.zIndex = '0';
+  document.getElementById('initial-screen').setAttribute('class', 'visibility');
+  loadElements();
+};
+
+buttonBegin[1].onclick = function () {
+  name1 = prompt('First Player, please enter your name', 'Player 1');
+  name2 = prompt('Second Player, please enter your name', 'Player 2');
+  document.getElementById('name').innerHTML= `${name1}`;
+  document.getElementById('initial-screen').style.zIndex = "0";
+  document.getElementById('initial-screen').setAttribute('class', 'visibility');
   loadElements();
 };
 
@@ -114,18 +97,23 @@ function chooseRight(choosenAnswer) {
 }
 
 let money = 0;
+let earnedMoney = 0
 for (let i = 0; i < 4; i += 1) {
-  buttonElement[i].onclick = function () {
+  buttonAnswer[i].onclick = function () {
     if (chooseRight(i) === true) {
-      document.getElementsByClassName('dinheiro').innerHTML = `${money += 1000}`;
-      buttonElement[i].setAttribute('class', 'btn-answer rigth');
-      setTimeout(function(){document.querySelector('.flip-card').setAttribute('class', 'flip-card active')},1000);
+      document.getElementById('dinheiro').innerHTML = `${money += 1000}`;
+      document.getElementById('dinheiro-ganho').innerHTML = `$ ${earnedMoney += 1000}`;
+      buttonAnswer[i].setAttribute('class', 'btn-answer rigth');
+      buttonAnswer[i].disabled = true;
+      setTimeout(function () { document.querySelector('.flip-card').setAttribute('class', 'flip-card active') }, 1000);
       clearInterval(canvasSizing);
+      clearTimeout(endGame);
       setTimeout(loadElements, 1800);
     } else {
-      buttonElement[i].setAttribute('class', 'btn-answer wrong');
-      buttonElement[chooseRight(i)].setAttribute('class', 'btn-answer rigth');
-      setTimeout(function(){document.getElementById('lost').removeAttribute('class')},2000);
+      buttonAnswer[i].setAttribute('class', 'btn-answer wrong');
+      buttonAnswer[chooseRight(i)].setAttribute('class', 'btn-answer rigth');
+      setTimeout(function () { document.getElementById('lost').removeAttribute('class') }, 2000);
+      document.querySelector('.flip-card').setAttribute('class', 'flip-card');
       clearInterval(canvasSizing);
     }
   };
