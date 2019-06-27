@@ -187,3 +187,8 @@ nav h1{
   justify-content: space-around;
   z-index:2;
 }
+
+#header{
+  display: flex;
+  justify-content: flex-end;
+}

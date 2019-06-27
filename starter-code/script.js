@@ -3,16 +3,65 @@
 /* eslint-disable func-names */
 /* eslint-disable prefer-destructuring */
 let canvasSizing;
-let endGame
+let endGame;
 let chosenQuestion;
 let questionStatement;
 let answers;
+let money = 0;
+let earnedMoney = 0;
+let name1;
+let name2;
+let players;
+const numQuestions = document.getElementById('number-of-questions');
 const questionElement = document.getElementById('question-text');
 const buttonAnswer = document.getElementsByClassName('btn-answer');
 const mutableArrayOfQuestions = [];
 const buttonBegin = document.getElementsByClassName('btn-begin');
+const playerNameScreen2 = document.getElementById('name')
+const initialScreen = document.getElementById('initial-screen')
+
 time.height = 40;
 
+
+buttonBegin[0].onclick = function () {
+  name1 = prompt('Single Player, please enter your name', 'PLAYER 1');
+  playerNameScreen2.innerHTML = `${name1}`;
+  initialScreen.style.zIndex = '0';
+  initialScreen.setAttribute('class', 'visibility');
+  players = 1;
+  console.log(players)
+  loadElements(players);
+};
+
+buttonBegin[1].onclick = function () {
+  name1 = prompt('First Player, please enter your name', 'Player 1');
+  name2 = prompt('Second Player, please enter your name', 'Player 2');
+  playerNameScreen2.innerHTML = `${name1}`;
+  initialScreen.style.zIndex = "0";
+  initialScreen.setAttribute('class', 'visibility');
+  players = 2;
+  loadElements(players);
+};
+
+function finishGame(nOfPlayers) {
+  console.log(nOfPlayers)
+  if (nOfPlayers === 1) {
+    setInterval(() => { endGame = document.getElementById('lost').removeAttribute('class')}, 2000);
+  }
+}
+
+function loadElements(numOfPlayers) {
+  getQuestion(questions);
+  writeQuestions();
+  elementsNormal();
+  stopAnimate()
+  animateScript();
+  size = 400;
+  canvasSizing = setInterval(interval, 10);
+  if (numOfPlayers == 1) {
+    numQuestions.setAttribute('class', 'visibility');
+  }
+}
 
 function interval() {
   time.width = `${size}`;
@@ -21,13 +70,10 @@ function interval() {
   } else size = 0;
 }
 
-
-
 /* It chooses the question from the array given and pushs the selected one to an array of alreadyChoseen */
 function getQuestion(arrayOfQuestions) {
   let firstIndex = Math.floor(Math.random() * arrayOfQuestions.length);
   chosenQuestion = arrayOfQuestions[firstIndex];
-
   if (mutableArrayOfQuestions.length < arrayOfQuestions.length) {
     while (mutableArrayOfQuestions.includes(chosenQuestion)) {
       let index = Math.floor(Math.random() * arrayOfQuestions.length);
@@ -59,34 +105,6 @@ function elementsNormal() {
   document.querySelector('.flip-card').setAttribute('class', 'flip-card');
 }
 
-function loadElements() {
-  endGame = setTimeout(function () { document.getElementById('lost').removeAttribute('class') }, 10000);
-  getQuestion(questions);
-  writeQuestions();
-  elementsNormal();
-  stopAnimate()
-  animateScript();
-  size = 400;
-  canvasSizing = setInterval(interval, 10);
-}
-
-let name1
-buttonBegin[0].onclick = function () {
-  name1 = prompt('Single Player, please enter your name', 'Player 1');
-  document.getElementById('name').innerHTML= `${name1}`;
-  document.getElementById('initial-screen').style.zIndex = '0';
-  document.getElementById('initial-screen').setAttribute('class', 'visibility');
-  loadElements();
-};
-
-buttonBegin[1].onclick = function () {
-  name1 = prompt('First Player, please enter your name', 'Player 1');
-  name2 = prompt('Second Player, please enter your name', 'Player 2');
-  document.getElementById('name').innerHTML= `${name1}`;
-  document.getElementById('initial-screen').style.zIndex = "0";
-  document.getElementById('initial-screen').setAttribute('class', 'visibility');
-  loadElements();
-};
 
 /* It sees if we have chosen the right answer */
 function chooseRight(choosenAnswer) {
@@ -96,8 +114,7 @@ function chooseRight(choosenAnswer) {
   return (chosenQuestion.correct);
 }
 
-let money = 0;
-let earnedMoney = 0
+let numOfQuestions = 1;
 for (let i = 0; i < 4; i += 1) {
   buttonAnswer[i].onclick = function () {
     if (chooseRight(i) === true) {
@@ -105,6 +122,7 @@ for (let i = 0; i < 4; i += 1) {
       document.getElementById('dinheiro-ganho').innerHTML = `$ ${earnedMoney += 1000}`;
       buttonAnswer[i].setAttribute('class', 'btn-answer rigth');
       buttonAnswer[i].disabled = true;
+      numQuestions.innerHTML = `${numOfQuestions += 1}/15`
       setTimeout(function () { document.querySelector('.flip-card').setAttribute('class', 'flip-card active') }, 1000);
       clearInterval(canvasSizing);
       clearTimeout(endGame);
@@ -112,7 +130,8 @@ for (let i = 0; i < 4; i += 1) {
     } else {
       buttonAnswer[i].setAttribute('class', 'btn-answer wrong');
       buttonAnswer[chooseRight(i)].setAttribute('class', 'btn-answer rigth');
-      setTimeout(function () { document.getElementById('lost').removeAttribute('class') }, 2000);
+      console.log(players)
+      finishGame(players);
       document.querySelector('.flip-card').setAttribute('class', 'flip-card');
       clearInterval(canvasSizing);
     }

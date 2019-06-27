@@ -35,4 +35,28 @@ const questions = [
     answers: ['Submarino', 'Jet Ski', 'Jangada', 'Lancha'],
     correct: 2,
   },
+  {
+    level: 'hard',
+    question: 'O que significa literalmente Perestroika?',
+    answers: ['Conversão', 'Involução', 'Reestruturação', 'Regressão'],
+    correct: 2,
+  },
+  {
+    level: 'medium',
+    question: 'O que significa a expressão e-mail?',
+    answers: ['Correio Rápido', 'Correio Eletrônico', 'Correio Elegante', 'Correio de Máquina'],
+    correct: 1,
+  },
+  {
+    level: 'hard',
+    question: 'Onde foi conduzida a vitória dasforças aliadas na Segunda Guerra Mundial?',
+    answers: ['Cannes', 'Marselha', 'Capri', 'Normandia'],
+    correct: 3,
+  },
+  {
+    level: 'hard',
+    question: 'Qual oceano tem o maior volume de água?',
+    answers: ['Atlântico', 'Índico', 'Ártico', 'Pacífico'],
+    correct: 3,
+  },
 ];

@@ -23,5 +23,21 @@ body{
   height: 100%;
   background-color: white;
   border-radius: 30px;
-  padding: 70px 30px;
+  padding: 20px 30px 70px 30px;
+}
+
+#name, #number-of-questions{
+  padding-bottom: 20px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+#controlers{
+  height: 200px;
+  width: 200px;
+  margin-right: 40px;
+  background: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around
 }
