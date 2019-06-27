@@ -1,3 +1,12 @@
+class Question {
+  constructor(level, question, answers, correct) {
+    this.level = level;
+    this.question = question;
+    this.answers = answers;
+    this.correct = correct;
+  }
+}
+
 const questions = [
   {
     level: 'easy',
@@ -59,4 +68,16 @@ const questions = [
     answers: ['Atlântico', 'Índico', 'Ártico', 'Pacífico'],
     correct: 3,
   },
+  new Question('hard', 'Qual oceano tem o maior volume de água?', ['Atlântico', 'Índico', 'Ártico', 'Pacífico'], 3)
 ];
+
+// level: 'hard',
+//     question: 'Qual oceano tem o maior volume de água?',
+//     answers:[{name:'Atlântico',
+//     correct:true}] 
+
+//     if(answers[choosenAnswer].correct)
+//     chosenQuestion.answers.forEach((e) =>{
+//       if (e.correct)
+//       return e.correct
+//     }
