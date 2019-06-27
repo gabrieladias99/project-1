@@ -14,13 +14,12 @@ let name2;
 let players;
 const numQuestions = document.getElementById('number-of-questions');
 const questionElement = document.getElementById('question-text');
-const buttonAnswer = document.getElementsByClassName('btn-answer');
+const buttonAnswer = document.querySelectorAll('.btn-answer');
 const mutableArrayOfQuestions = [];
 const btnOnePlayer = document.getElementById('btn-one-player');
 const btnTwoPlayers = document.getElementById('btn-two-players');
 const playerNameScreen2 = document.getElementById('name');
 const initialScreen = document.getElementById('initial-screen');
-
 
 time.height = 40;
 
@@ -60,16 +59,16 @@ const getQuestion = (arrayOfQuestions) => {
 /* It writes the questions in the HTML elements */
 const writeQuestions = () => {
   questionElement.innerHTML = questionStatement;
-  for (let i = 0; i < 4; i += 1) {
-    buttonAnswer[i].innerHTML = answers[i];
-  }
+  buttonAnswer.forEach((btnAns, i) => {
+    btnAns.innerHTML = answers[i];
+  });
 };
 
 const elementsNormal = () => {
-  for (let i = 0; i < 4; i += 1) {
-    buttonAnswer[i].setAttribute('class', 'btn-answer');
-    buttonAnswer[i].disabled = false;
-  }
+  buttonAnswer.forEach((btnAns) => {
+    btnAns.setAttribute('class', 'btn-answer');
+    btnAns.disabled = false;
+  });
   document.querySelector('.flip-card').setAttribute('class', 'flip-card');
 };
 
@@ -97,14 +96,15 @@ const loadElements = (numOfPlayers) => {
 };
 
 let numOfQuestions = 1;
-for (let i = 0; i < 4; i += 1) {
-  buttonAnswer[i].onclick = function () {
+
+buttonAnswer.forEach((btnAns, i) => {
+  btnAns.onclick = () => {
     if (chooseRight(i) === true) {
       document.getElementById('dinheiro').innerHTML = `${money += 1000}`;
       document.getElementById('dinheiro-ganho').innerHTML = `$ ${earnedMoney += 1000}`;
-      buttonAnswer[i].setAttribute('class', 'btn-answer rigth');
-      buttonAnswer[i].disabled = true;
-      numQuestions.innerHTML = `${numOfQuestions += 1}/15`
+      btnAns.setAttribute('class', 'btn-answer rigth');
+      btnAns.disabled = true;
+      numQuestions.innerHTML = `${numOfQuestions += 1}/15`;
       setTimeout(() => {
         document.querySelector('.flip-card').setAttribute('class', 'flip-card active');
       }, 1000);
@@ -112,43 +112,48 @@ for (let i = 0; i < 4; i += 1) {
       clearTimeout(endGame);
       setTimeout(loadElements, 1800);
     } else {
-      buttonAnswer[i].setAttribute('class', 'btn-answer wrong');
+      btnAns.setAttribute('class', 'btn-answer wrong');
       buttonAnswer[chooseRight(i)].setAttribute('class', 'btn-answer rigth');
       finishGame(players);
       document.querySelector('.flip-card').setAttribute('class', 'flip-card');
       clearInterval(canvasSizing);
     }
   };
-}
+});
+
 
 // Clicking on this button make the inputs appears for 1 player
 btnOnePlayer.onclick = function () {
-  document.getElementById('player-1').removeAttribute('class');
-  document.getElementById('btn-ok-player1').removeAttribute('class');
+  document.getElementById('initial-screen').setAttribute('class', 'visibility');
   players = 1;
 };
 
 // Ok button for one player that initializes the game
-document.getElementById('btn-ok-player1').onclick = function () {
+document.getElementById('next').onclick = function () {
   name1 = document.getElementById('player-1').value.toUpperCase();
   playerNameScreen2.innerHTML = `${name1}`;
-  initialScreen.setAttribute('class', 'visibility');
+  document.getElementById('player-1-choice').setAttribute('class', 'visibility');
+  document.getElementById('game-interface').removeAttribute('class');
   loadElements(players);
 };
 
-// Cliking on this button make the inputs appears for 2 players
-btnTwoPlayers.onclick = function () {
-  document.getElementById('player-1-p2').removeAttribute('class');
-  document.getElementById('player-2-p2').removeAttribute('class');
-  document.getElementById('btn-ok-player2').removeAttribute('class');
-  players = 2;
-};
+document.getElementById('play-again').onclick = function () {
+  document.getElementById('initial-screen').removeAttribute('class');
+}
 
-// Ok button for two players that initiliazes the game
-document.getElementById('btn-ok-player2').onclick = function () {
-  name1 = document.getElementById('player-1-p2').value.toUpperCase();
-  name2 = document.getElementById('player-2-p2').value.toUpperCase();
-  playerNameScreen2.innerHTML = `${name1}`;
-  initialScreen.setAttribute('class', 'visibility');
-  loadElements(players);
-};
+// // Cliking on this button make the inputs appears for 2 players
+// btnTwoPlayers.onclick = function () {
+//   document.getElementById('player-1-p2').removeAttribute('class');
+//   document.getElementById('player-2-p2').removeAttribute('class');
+//   document.getElementById('btn-ok-player2').removeAttribute('class');
+//   players = 2;
+// };
+
+// // Ok button for two players that initiliazes the game
+// document.getElementById('btn-ok-player2').onclick = function () {
+//   name1 = document.getElementById('player-1-p2').value.toUpperCase();
+//   name2 = document.getElementById('player-2-p2').value.toUpperCase();
+//   playerNameScreen2.innerHTML = `${name1}`;
+//   initialScreen.setAttribute('class', 'visibility');
+//   loadElements(players);
+// };

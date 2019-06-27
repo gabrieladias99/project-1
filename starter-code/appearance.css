@@ -12,11 +12,11 @@ body{
   background-color: navy;
   display:flex;
   justify-content: center;
-  overflow:hidden; /*Scrollbar is not showed and you can not scroll the screen*/
+  /* overflow:hidden; Scrollbar is not showed and you can not scroll the screen */
 }
 
 /* The same design for all our 'screens' */
-#initial-screen, #game-interface, #back, #lost{
+#initial-screen, #game-interface, #player-1-choice, #back, #lost{
   position: absolute;
   backface-visibility: hidden;
   width: 100%;

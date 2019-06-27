@@ -18,11 +18,9 @@
         <p>Jogo Do</p>
         <img id="corn" src="../img/corn.svg">
       </section>
-
       <section class='width-100'>
         <button id="btn-one-player" class="btn-begin">1 Player</button>
-        <input id="player-1" type="text" class="visibility">
-        <button id="btn-ok-player1" class="visibility">OK</button>
+
       </section>
       <section>
         <button id="btn-two-players" class="btn-begin">2 Players</button>
@@ -32,7 +30,24 @@
       </section>
     </div>
     <div class="flip-card-inner">
-      <div id="game-interface">
+      <!-- screen 2 -->
+      <div id='player-1-choice'>
+        <section>
+          <p>Jogo Do</p>
+          <img id="corn" src="../img/corn.svg">
+        </section>
+        <label>Qual o seu nome jogador?</label>
+        <input id="player-1" type="text" placeholder="player 1">
+        <label>Nível</label>
+        <select>
+          <option value="easy">Fácil</option>
+          <option value="medium">Médio</option>
+          <option value="hard">Difícil</option>
+        </select>
+        <button id='next'>>></button>
+      </div>
+
+      <div id="game-interface" class="visibility">
         <div id="header">
           <p id="number-of-questions">1/15</p>
         </div>
@@ -74,7 +89,7 @@
       <div id="lost" class="visibility">
         <h1> You Lost </h1>
         <p id="dinheiro-ganho" class="dinheiro">$ 0</p>
-        <button class="btn-start"> Let's Play Again!!</button>
+        <button id='play-again' class="btn-start"> Let's Play Again!!</button>
       </div>
     </div>
   </div>
