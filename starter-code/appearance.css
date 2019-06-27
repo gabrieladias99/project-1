@@ -41,3 +41,11 @@ body{
   flex-direction: column;
   justify-content: space-around
 }
+
+#corn{
+  width:70px;
+}
+
+.width-100{
+  width:100%;
+}

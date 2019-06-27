@@ -12,44 +12,54 @@
 </head>
 
 <body>
-  <div id='controlers'>
-    <button>Pular</button>
-    <button> 50/50</button>
-  </div>
-  <div class='flip-card'>
-    <div id='initial-screen'>
-      <button class='btn-begin'>1 Player</button>
-      <button class='btn-begin'>2 Players</button>
+  <div class="flip-card">
+    <div id="initial-screen">
+      <section>
+        <p>Jogo Do</p>
+        <img id="corn" src="../img/corn.svg">
+      </section>
+
+      <section class='width-100'>
+        <button id="btn-one-player" class="btn-begin">1 Player</button>
+        <input id="player-1" type="text" class="visibility">
+        <button id="btn-ok-player1" class="visibility">OK</button>
+      </section>
+      <section>
+        <button id="btn-two-players" class="btn-begin">2 Players</button>
+        <input id="player-1-p2" class="visibility">
+        <input id="player-2-p2" class="visibility">
+        <button id="btn-ok-player2" class="visibility">OK</button>
+      </section>
     </div>
-    <div class='flip-card-inner'>
-      <div id='game-interface'>
-        <div id='header'>
-          <p id='number-of-questions'>1/15</p>
+    <div class="flip-card-inner">
+      <div id="game-interface">
+        <div id="header">
+          <p id="number-of-questions">1/15</p>
         </div>
 
-        <p id='name'></p>
+        <p id="name"></p>
 
         <div id="demo">
           <p id="image">
           </p>
         </div>
 
-        <section id='sinals'>
-          <div class='inline'>
-            <img id='pig' src="../img/piggybank.svg">
-            <p id='dinheiro' class="dinheiro">0</p>
+        <section id="sinals">
+          <div class="inline">
+            <img id="pig" src="../img/piggybank.svg">
+            <p id="dinheiro" class="dinheiro">0</p>
           </div>
         </section>
-        <div id='timecanvasdiv'>
+        <div id="timecanvasdiv">
           <canvas id="time"></canvas>
         </div>
 
 
-        <section id='playable'>
-          <div class='question'>
-            <p id='question-text'>Question?</p>
+        <section id="playable">
+          <div class="question">
+            <p id="question-text">Question?</p>
           </div>
-          <div id='answers'>
+          <div id="answers">
             <button class="btn-answer">Answer 1</button>
             <button class="btn-answer">Answer 2 </button>
             <button class="btn-answer">Answer 3</button>
@@ -57,13 +67,13 @@
           </div>
         </section>
       </div>
-      <div id='back'>
-        <img id='coin-image' src="../img/coin.png">
+      <div id="back">
+        <img id="coin-image" src="../img/coin.png">
         <h1>PRÓXIMA PERGUNTA</h1>
       </div>
-      <div id='lost' class="visibility">
+      <div id="lost" class="visibility">
         <h1> You Lost </h1>
-        <p id='dinheiro-ganho' class='dinheiro'>$ 0</p>
+        <p id="dinheiro-ganho" class="dinheiro">$ 0</p>
         <button class="btn-start"> Let's Play Again!!</button>
       </div>
     </div>
