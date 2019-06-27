@@ -14,32 +14,37 @@
 <body>
   <div class="flip-card">
     <div id="initial-screen">
-      <section>
-        <p>Jogo Do</p>
+      <section class='center'>
+        <p class='logo'>JOGO DO</p>
         <img id="corn" src="../img/corn.svg">
       </section>
       <section class='width-100'>
-        <button id="btn-one-player" class="btn-begin">1 Player</button>
-
+        <button id="btn-one-player" class="btn-begin">
+          <img width="50px" src="../img/pig (1).svg"> 
+          1 PLAYER</button>
       </section>
       <section>
-        <button id="btn-two-players" class="btn-begin">2 Players</button>
+        <button id="btn-two-players" class="btn-begin">
+            <img width="50px" src="../img/pig (1).svg"> 
+            <img width="50px" src="../img/pig.svg">
+            2 PLAYERS</button>
         <input id="player-1-p2" class="visibility">
         <input id="player-2-p2" class="visibility">
         <button id="btn-ok-player2" class="visibility">OK</button>
       </section>
     </div>
+    
     <div class="flip-card-inner">
       <!-- screen 2 -->
       <div id='player-1-choice'>
-        <section>
-          <p>Jogo Do</p>
-          <img id="corn" src="../img/corn.svg">
+        <section class='center'>
+          <p class='logo'>JOGO DO</p>
+        <img id="corn" src="../img/corn.svg">
         </section>
         <label>Qual o seu nome jogador?</label>
         <input id="player-1" type="text" placeholder="player 1">
         <label>Nível</label>
-        <select>
+        <select>visibility
           <option value="easy">Fácil</option>
           <option value="medium">Médio</option>
           <option value="hard">Difícil</option>
@@ -47,7 +52,7 @@
         <button id='next'>>></button>
       </div>
 
-      <div id="game-interface" class="visibility">
+      <div id="game-interface" class='visibility'>
         <div id="header">
           <p id="number-of-questions">1/15</p>
         </div>
@@ -86,7 +91,7 @@
         <img id="coin-image" src="../img/coin.png">
         <h1>PRÓXIMA PERGUNTA</h1>
       </div>
-      <div id="lost" class="visibility">
+      <div id="lost" class='visibility'>
         <h1> You Lost </h1>
         <p id="dinheiro-ganho" class="dinheiro">$ 0</p>
         <button id='play-again' class="btn-start"> Let's Play Again!!</button>
