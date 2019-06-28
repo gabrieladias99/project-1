@@ -14,6 +14,9 @@ let name2;
 let players;
 let pig1Audio = new Audio('../audio/pigsound.mp3');
 let pig2Audio = new Audio('../audio/ofarm.mp3');
+let correctAudio = new Audio('../audio/Correct-answer.mp3');
+let wrongAudio = new Audio('../audio/Wrong-answer.mp3');
+let clockAudio = new Audio('../audio/clock.mp3');
 const numQuestions = document.getElementById('number-of-questions');
 const questionElement = document.getElementById('question-text');
 const buttonAnswer = document.querySelectorAll('.btn-answer');
@@ -85,6 +88,7 @@ const chooseRight = (choosenAnswer) => {
 
 
 const loadElements = (numOfPlayers) => {
+  clockAudio.play();
   getQuestion(questions);
   writeQuestions();
   elementsNormal();
@@ -161,6 +165,8 @@ let numOfQuestions = 1;
 buttonAnswer.forEach((btnAns, i) => {
   btnAns.onclick = () => {
     if (chooseRight(i) === true) {
+      clockAudio.pause();
+      correctAudio.play();
       gainedMoney(money);
       btnAns.setAttribute('class', 'btn-answer rigth');
       btnAns.disabled = true;
@@ -172,6 +178,8 @@ buttonAnswer.forEach((btnAns, i) => {
       clearTimeout(endGame);
       setTimeout(loadElements, 1800);
     } else {
+      clockAudio.pause();
+      wrongAudio.play();
       btnAns.setAttribute('class', 'btn-answer wrong');
       buttonAnswer[chooseRight(i)].setAttribute('class', 'btn-answer rigth');
       finishGame(players);
