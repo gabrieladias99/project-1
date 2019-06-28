@@ -12,10 +12,12 @@ let earnedMoney = 0;
 let name1;
 let name2;
 let players;
+let pig1Audio = new Audio('../audio/pigsound.mp3');
+let pig2Audio = new Audio('../audio/ofarm.mp3');
 const numQuestions = document.getElementById('number-of-questions');
 const questionElement = document.getElementById('question-text');
 const buttonAnswer = document.querySelectorAll('.btn-answer');
-const mutableArrayOfQuestions = [];
+let pickedQuestions = [];
 const btnOnePlayer = document.getElementById('btn-one-player');
 const btnTwoPlayers = document.getElementById('btn-two-players');
 const playerNameScreen2 = document.getElementById('name');
@@ -43,16 +45,16 @@ const interval = () => {
 const getQuestion = (arrayOfQuestions) => {
   let firstIndex = Math.floor(Math.random() * arrayOfQuestions.length);
   chosenQuestion = arrayOfQuestions[firstIndex];
-  if (mutableArrayOfQuestions.length < arrayOfQuestions.length) {
-    while (mutableArrayOfQuestions.includes(chosenQuestion)) {
+  if (pickedQuestions.length < 16) {
+    while (pickedQuestions.includes(chosenQuestion)) {
       let index = Math.floor(Math.random() * arrayOfQuestions.length);
       chosenQuestion = arrayOfQuestions[index];
     }
-    mutableArrayOfQuestions.push(chosenQuestion);
+    pickedQuestions.push(chosenQuestion);
     questionStatement = chosenQuestion.question;
     answers = chosenQuestion.answers;
   } else {
-    document.getElementById('lost').removeAttribute('class')
+    document.getElementById('winner-1-player').removeAttribute('class');
   }
 };
 
@@ -88,6 +90,9 @@ const loadElements = (numOfPlayers) => {
   elementsNormal();
   stopAnimate()
   animateScript();
+  endGame = setTimeout(() => {
+    document.getElementById('lost').removeAttribute('class');
+  }, 10000);
   size = 400;
   canvasSizing = setInterval(interval, 10);
   if (numOfPlayers == 1) {
@@ -95,13 +100,68 @@ const loadElements = (numOfPlayers) => {
   }
 };
 
+const gainedMoney = (m) => {
+  switch (m) {
+    case 0:
+      money = 1000;
+      break;
+    case 1000:
+      money = 2000;
+      break;
+    case 2000:
+      money = 3000;
+      break;
+    case 3000:
+      money = 4000;
+      break;
+    case 4000:
+      money = 5000;
+      break;
+    case 5000:
+      money = 10000;
+      break;
+    case 10000:
+      money = 20000;
+      break;
+    case 20000:
+      money = 30000;
+      break;
+    case 30000:
+      money = 40000;
+      break;
+    case 40000:
+      money = 50000;
+      break;
+    case 50000:
+      money = 100000;
+      break;
+    case 100000:
+      money = 200000;
+      break;
+    case 200000:
+      money = 300000;
+      break;
+    case 300000:
+      money = 400000;
+      break;
+    case 400000:
+      money = 500000;
+      break;
+    case 500000:
+      money = 1000000;
+      break;
+    default:
+  }
+  document.getElementById('dinheiro').innerHTML = `${money}`;
+  document.getElementById('dinheiro-ganho').innerHTML = `$ ${money}`;
+}
+
 let numOfQuestions = 1;
 
 buttonAnswer.forEach((btnAns, i) => {
   btnAns.onclick = () => {
     if (chooseRight(i) === true) {
-      document.getElementById('dinheiro').innerHTML = `${money += 1000}`;
-      document.getElementById('dinheiro-ganho').innerHTML = `$ ${earnedMoney += 1000}`;
+      gainedMoney(money);
       btnAns.setAttribute('class', 'btn-answer rigth');
       btnAns.disabled = true;
       numQuestions.innerHTML = `${numOfQuestions += 1}/15`;
@@ -122,9 +182,10 @@ buttonAnswer.forEach((btnAns, i) => {
 });
 
 
-// Clicking on this button make the inputs appears for 1 player
+// Clicking on this button goes to the 1player screen where he adds his name and level of game
 btnOnePlayer.onclick = function () {
-  document.getElementById('initial-screen').setAttribute('class', 'visibility');
+  document.getElementById('initial-screen').classList.add('visibility');
+  document.getElementById('player-1-choice').classList.remove('visibility');
   players = 1;
 };
 
@@ -132,28 +193,23 @@ btnOnePlayer.onclick = function () {
 document.getElementById('next').onclick = function () {
   name1 = document.getElementById('player-1').value.toUpperCase();
   playerNameScreen2.innerHTML = `${name1}`;
-  document.getElementById('player-1-choice').setAttribute('class', 'visibility');
-  document.getElementById('game-interface').removeAttribute('class');
+  document.getElementById('player-1-choice').classList.add('visibility');
+  document.getElementById('game-interface').classList.remove('visibility');
   loadElements(players);
 };
 
 document.getElementById('play-again').onclick = function () {
-  document.getElementById('initial-screen').removeAttribute('class');
-}
+  window.location.reload();
+};
+document.getElementById('play-again1').onclick = function () {
+  window.location.reload();
+};
 
-// // Cliking on this button make the inputs appears for 2 players
-// btnTwoPlayers.onclick = function () {
-//   document.getElementById('player-1-p2').removeAttribute('class');
-//   document.getElementById('player-2-p2').removeAttribute('class');
-//   document.getElementById('btn-ok-player2').removeAttribute('class');
-//   players = 2;
-// };
 
-// // Ok button for two players that initiliazes the game
-// document.getElementById('btn-ok-player2').onclick = function () {
-//   name1 = document.getElementById('player-1-p2').value.toUpperCase();
-//   name2 = document.getElementById('player-2-p2').value.toUpperCase();
-//   playerNameScreen2.innerHTML = `${name1}`;
-//   initialScreen.setAttribute('class', 'visibility');
-//   loadElements(players);
-// };
+btnOnePlayer.addEventListener('mouseover', () => {
+  pig1Audio.play();
+});
+
+btnTwoPlayers.addEventListener('mouseover', () => {
+  pig2Audio.play();
+});

@@ -6,59 +6,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Teste</title>
-  <link rel="stylesheet" href="appearance.css">
   <link rel="stylesheet" href="flip-style.css">
 
 </head>
 
 <body>
   <div class="flip-card">
+
     <div id="initial-screen">
-      <section class='center'>
-        <p class='logo'>JOGO DO</p>
+      <section id="logo2" class="center">
+        <p class="logo">JOGO DO</p>
         <img id="corn" src="../img/corn.svg">
       </section>
-      <section class='width-100'>
+      <section class="width-100">
         <button id="btn-one-player" class="btn-begin">
-          <img width="50px" src="../img/pig (1).svg"> 
+          <img class="pigs" src="../img/pig (1).svg">
           1 PLAYER</button>
       </section>
-      <section>
+      <section class="width-100">
         <button id="btn-two-players" class="btn-begin">
-            <img width="50px" src="../img/pig (1).svg"> 
-            <img width="50px" src="../img/pig.svg">
-            2 PLAYERS</button>
-        <input id="player-1-p2" class="visibility">
-        <input id="player-2-p2" class="visibility">
-        <button id="btn-ok-player2" class="visibility">OK</button>
+          <figure>
+            <img class="pigs" src="../img/pig (1).svg">
+            <img class="pigs" src="../img/pig.svg">
+          </figure>
+          2 PLAYERS
+        </button>
       </section>
     </div>
-    
+
     <div class="flip-card-inner">
       <!-- screen 2 -->
-      <div id='player-1-choice'>
-        <section class='center'>
-          <p class='logo'>JOGO DO</p>
-        <img id="corn" src="../img/corn.svg">
+      <div id="player-1-choice">
+        <section class="center">
+          <p class="logo">JOGO DO</p>
+          <img id="corn" src="../img/corn.svg">
         </section>
-        <label>Qual o seu nome jogador?</label>
-        <input id="player-1" type="text" placeholder="player 1">
-        <label>Nível</label>
-        <select>visibility
-          <option value="easy">Fácil</option>
-          <option value="medium">Médio</option>
-          <option value="hard">Difícil</option>
-        </select>
-        <button id='next'>>></button>
+        <section id="qual-nome">
+          <label>Qual o seu nome?</label>
+          <input id="player-1" type="text" placeholder="player 1">
+        </section>
+        <section id="nivel">
+          <label>Nível</label>
+          <select id="selector">
+            <option value="easy">Fácil</option>
+            <option value="medium">Médio</option>
+            <option value="hard">Difícil</option>
+          </select>
+        </section>
+        <button id="next">>></button>
       </div>
 
-      <div id="game-interface" class='visibility'>
+      <div id="game-interface" class="visibility">
         <div id="header">
           <p id="number-of-questions">1/15</p>
         </div>
-
-        <p id="name"></p>
-
+        <p id="name">Juliana</p>
         <div id="demo">
           <p id="image">
           </p>
@@ -73,8 +75,6 @@
         <div id="timecanvasdiv">
           <canvas id="time"></canvas>
         </div>
-
-
         <section id="playable">
           <div class="question">
             <p id="question-text">Question?</p>
@@ -87,14 +87,20 @@
           </div>
         </section>
       </div>
+
       <div id="back">
         <img id="coin-image" src="../img/coin.png">
-        <h1>PRÓXIMA PERGUNTA</h1>
       </div>
-      <div id="lost" class='visibility'>
-        <h1> You Lost </h1>
+      <div id="winner-1-player" class="visibility">
+        <img src="../img/trofeu.jpg" alt="">
+        <p id="winner-name"></p>
+        <h1>Parabéns!<br>Você é o mago das moedas</h1>
+        <button id="play-again1" class="btn-start"> Vamos Jogar de Novo?</button>
+      </div>
+      <div id="lost" class="visibility">
+        <h1> Puxa!<br>Você estava quase lá! </h1>
         <p id="dinheiro-ganho" class="dinheiro">$ 0</p>
-        <button id='play-again' class="btn-start"> Let's Play Again!!</button>
+        <button id="play-again" class="btn-start"> Vamos Jogar de Novo?</button>
       </div>
     </div>
   </div>
