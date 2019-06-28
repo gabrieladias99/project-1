@@ -96,6 +96,7 @@ const loadElements = (numOfPlayers) => {
   animateScript();
   endGame = setTimeout(() => {
     document.getElementById('lost').removeAttribute('class');
+    clockAudio.pause();
   }, 10000);
   size = 400;
   canvasSizing = setInterval(interval, 10);
