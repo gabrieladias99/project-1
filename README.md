@@ -20,7 +20,7 @@ You must get $1,000,000.00 to win the game by answering 15 questions
 
 >This is a free software, feel free to contribute in any way you want
 
-1. Fork it (<https://github.com/heitorgodau/IronQuest-The-Game/fork>)
+1. Fork it (<https://github.com/gabrieladias99/project-1/fork>)
 2. Create your feature branch (`git checkout -b dev`)
 3. Commit your changes (`git commit -m 'Add new function'`)
 4. Push to the branch (`git push origin dev`)
